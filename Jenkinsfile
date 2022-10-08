@@ -19,9 +19,14 @@ pipeline {
             post {
                 always {
                     junit 'hello-app/target/surefire-reports/*.xml'
-                    step( [ $class: 'JacocoPublisher' ] )
+                   // step( [ $class: 'JacocoPublisher' ] )
                 }
             }
         }
+        stage('code coverage') {
+           steps{
+              step( [ $class: 'JacocoPublisher' ] ) 
+           }
+        }   
     }
 }
