@@ -5,12 +5,6 @@ pipeline {
             steps {
                 sh '/opt/apache-maven-3.8.6/bin/mvn -f hello-app/pom.xml -B -DskipTests clean package'
             }
-            post {
-                success {
-                    echo "Now Archiving the Artifacts....."
-                    archiveArtifacts artifacts: '**/*.jar'
-                }
-            }
         }
         stage('Test') {
             steps {
@@ -28,5 +22,11 @@ pipeline {
               step( [ $class: 'JacocoPublisher' ] ) 
            }
         }   
+    }
+    post {
+        success {
+            echo "Now Archiving the Artifacts....."
+            archiveArtifacts artifacts: '**/*.jar'
+        }
     }
 }
