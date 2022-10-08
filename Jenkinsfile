@@ -10,12 +10,12 @@ pipeline {
             steps {
                 sh '/opt/apache-maven-3.8.6/bin/mvn -f hello-app/pom.xml test'
             }
-            post {
-                always {
-                    junit 'hello-app/target/surefire-reports/*.xml'
-                   // step( [ $class: 'JacocoPublisher' ] )
-                }
-            }
+        }
+        stage('junit test') {
+           steps{
+              junit 'hello-app/target/surefire-reports/*.xml'
+        }
+
         }
         stage('code coverage') {
            steps{
