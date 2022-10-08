@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn -f hello-app/pom.xml -B -DskipTests clean package'
+                sh '/opt/apache-maven-3.8.6/bin/mvn -f hello-app/pom.xml -B -DskipTests clean package'
             }
             post {
                 success {
@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'mvn -f hello-app/pom.xml test'
+                sh '/opt/apache-maven-3.8.6/bin/mvn -f hello-app/pom.xml test'
             }
             post {
                 always {
